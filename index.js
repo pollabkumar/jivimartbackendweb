@@ -1,6 +1,7 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+const axios = require('axios')
 const bodyParser = require('body-parser');
 // new
 //pollab
@@ -40,39 +41,6 @@ app.use(function (req, res, next) {
 app.use(cookieParser());
 
 
-
-// /api/bid/pay
-// app.post('/api/bid/', (req, res) => {
-// // 	Insta.setKeys('test_d883b3a8d2bc1adc7a535506713', 'test_dc229039d2232a260a2df3f7502');
-// 	Insta.setKeys('180c4491e7b7195c106a29e9b79fa14f', '30009eb95b26d7915d37386ca3060e28');
-
-// 	const data = new Insta.PaymentData();
-// 	Insta.isSandboxMode(true);
-
-// 	data.purpose = req.body.purpose;
-// 	data.amount = req.body.amount;
-// 	data.buyer_name = req.body.buyer_name;
-// 	data.redirect_url = req.body.redirect_url;
-// 	data.email = req.body.email;
-// 	data.phone = req.body.phone;
-// 	data.send_email = false;
-// 	data.webhook = 'http://www.example.com/webhook/';
-// 	data.send_sms = false;
-// 	data.allow_repeated_payments = false;
-// 	data.token = req.body.token;
-// 	// console.log(data, 'dsicis')
-// 	Insta.createPayment(data, function (error, response) {
-// 		if (error) {
-// 			res.send({ msg: error })
-// 		} else {
-// 			const responseData = JSON.parse(response);
-// 			console.log(responseData, 'responseData pay')
-// 			const redirectUrl = responseData.payment_request.longurl;
-// 			console.log(redirectUrl, 'responseData url')
-// 			res.status(200).json({ msg: redirectUrl });
-// 		}
-// 	});
-// });
 
 app.post('/api/bid/', (req, res) => {
 	Insta.setKeys('test_d883b3a8d2bc1adc7a535506713', 'test_dc229039d2232a260a2df3f7502');
@@ -135,7 +103,7 @@ app.get('/callback/', async (req, res) => {
 
 
 
-	if(data == null){
+	if (data == null) {
 		console.log("error")
 	}
 
@@ -149,7 +117,7 @@ app.get('/callback/', async (req, res) => {
 				.then(ress => {
 					console.log("postdata", ress)
 					let sendorderid = ress.data.data.order_uuid
-		            console.log('jjjjj',sendorderid)
+					console.log('jjjjj', sendorderid)
 					res.redirect(`http://localhost:3000/Confirm/${sendorderid}`)
 
 				}
@@ -160,19 +128,10 @@ app.get('/callback/', async (req, res) => {
 			console.log(error);
 		}
 
-	}	
+	}
 });
 
 
-
-
-
-//pollab
-// const options = {
-//  key:  fs.readFileSync(__dirname + '/cert/private.key'),
-//  cert: fs.readFileSync(__dirname + '/cert/certificate.crt'),
-//  cert: fs.readFileSync(__dirname + '.'),
-// }
 
 const PORT = process.env.PORT || 8080;
 
