@@ -78,7 +78,7 @@ app.get('/callback/', async (req, res) => {
 	console.log(req, 'ooo')
 	console.log(req.cookies.s_l, 'ooo2')
 	console.log(res, 'ppp')
-	
+
 
 	// function decrpt() {
 	// 	console.log('cookies.s_l.toString()', req.cookies.s_l.toString())
@@ -126,7 +126,7 @@ app.get('/callback/', async (req, res) => {
 					console.log("postdata", ress)
 					let sendorderid = ress.data.data.order_uuid
 					console.log('jjjjj', sendorderid)
-					res.redirect(`http://localhost:3000/Confirm/${sendorderid}`)
+					res.redirect(`https://jivimart.com/Confirm/${sendorderid}`)
 
 				}
 				)
