@@ -78,11 +78,19 @@ app.get('/callback/', async (req, res) => {
 	console.log(req, 'ooo')
 	console.log(req.cookies.s_l, 'ooo2')
 	console.log(res, 'ppp')
+	
 
+	// function decrpt() {
+	// 	console.log('cookies.s_l.toString()', req.cookies.s_l.toString())
+	// 	let removefirst = req.cookies.s_l.toString().slice(10);
+	// 	console.log(removefirst.toString(), 'removefirst')
+	// 	let removelast = removefirst.slice(0, -10);
+	// 	return removelast
+	// }
 	function decrpt() {
-		console.log('cookies.s_l.toString()', req.cookies.s_l.toString())
-		let removefirst = req.cookies.s_l.toString().slice(10);
-		console.log(removefirst.toString(), 'removefirst')
+		console.log('cookies.s_l.toString()', req.cookies.s_l)
+		let removefirst = req.cookies.s_l.slice(10);
+		console.log(removefirst, 'removefirst')
 		let removelast = removefirst.slice(0, -10);
 		return removelast
 	}
