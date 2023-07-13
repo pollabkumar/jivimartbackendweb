@@ -88,7 +88,7 @@ app.get('/callback/', async (req, res) => {
 	// 	return removelast
 	// }
 	function decrpt() {
-		console.log('cookies.s_l.toString()', req.cookies.s_l)
+		console.log('cookies.s_l.toString()', req.cookies.s_l.toString())
 		let removefirst = req.cookies.s_l.slice(10);
 		console.log(removefirst, 'removefirst')
 		let removelast = removefirst.slice(0, -10);
