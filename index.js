@@ -60,7 +60,7 @@ app.post('/api/bid/', (req, res) => {
 	data.send_sms = false;
 	data.allow_repeated_payments = false;
 	data.token = req.body.token;
-	// console.log(data, 'dsicis')
+	console.log(data, 'dsicis')
 	Insta.createPayment(data, function (error, response) {
 		if (error) {
 			res.send({ msg: error })
@@ -80,61 +80,57 @@ app.get('/callback/', async (req, res) => {
 	// console.log(res, 'ppp')
 
 
-	// function decrpt() {
-	// 	console.log('cookies.s_l.toString()', req.cookies.s_l.toString())
-	// 	let removefirst = req.cookies.s_l.toString().slice(10);
-	// 	console.log(removefirst.toString(), 'removefirst')
-	// 	let removelast = removefirst.slice(0, -10);
-	// 	return removelast
-	// }
+	function decrpt() {
+		console.log('cookies.s_l.toString()', req.cookies.s_l.toString())
+		let removefirst = req.cookies.s_l.toString().slice(10);
+		console.log(removefirst.toString(), 'removefirst')
+		let removelast = removefirst.slice(0, -10);
+		return removelast
+	}
+
+	let tokenn = decrpt(req.cookies)
+	let orderidcookie = (req.cookies.ordercookie)
+	console.log("orderidcookie777", orderidcookie)
+	console.log('newCookies2', tokenn)
+	let url_parts = url.parse(req.url, true),
+		responseData = url_parts.query;
+	console.log('responseData callback', responseData)
+	const data = {
+		payment_status: responseData.payment_status,
+		payment_id: responseData.payment_id,
+		id: req.cookies.ordercookie
+	}
+	console.log(data, 'datadatadata')
+	console.log(responseData, 'poopop')
 
 
 
-
-
-	// let tokenn = decrpt(req.cookies)
-	// let orderidcookie = (req.cookies.ordercookie)
-	// console.log("orderidcookie777", orderidcookie)
-	// console.log('newCookies2', tokenn)
-	// let url_parts = url.parse(req.url, true),
-	// 	responseData = url_parts.query;
-	// console.log('responseData callback', responseData)
-	// const data = {
-	// 	payment_status: responseData.payment_status,
-	// 	payment_id: responseData.payment_id,
-	// 	id: req.cookies.ordercookie
-	// }
-	// console.log(data, 'datadatadata')
-	// console.log(responseData, 'poopop')
+	if (data == null) {
+		console.log("error")
+	}
 
 
 
-	// if (data == null) {
-	// 	console.log("error")
-	// }
+	if (responseData.payment_id) {
+		try {
+			let orderdata = axios.defaults.headers.common['Authorization'] = `Bearer ${tokenn}`;
+			console.log('llll', orderdata)
+			const response = axios.post('https://super.jivimart.com/public/api/user/order/make/payment/id', data)
+				.then(ress => {
+					console.log("postdata", ress)
+					let sendorderid = ress.data.data.order_uuid
+					console.log('jjjjj', sendorderid)
+					res.redirect(`https://jivimart.com/Confirm/${sendorderid}`)
 
+				}
+				)
+			console.log(response, 'response2')
 
+		} catch (error) {
+			console.log(error);
+		}
 
-	// if (responseData.payment_id) {
-	// 	try {
-	// 		let orderdata = axios.defaults.headers.common['Authorization'] = `Bearer ${tokenn}`;
-	// 		console.log('llll', orderdata)
-	// 		const response = axios.post('https://super.jivimart.com/public/api/user/order/make/payment/id', data)
-	// 			.then(ress => {
-	// 				console.log("postdata", ress)
-	// 				let sendorderid = ress.data.data.order_uuid
-	// 				console.log('jjjjj', sendorderid)
-	// 				res.redirect(`https://jivimart.com/Confirm/${sendorderid}`)
-
-	// 			}
-	// 			)
-	// 		console.log(response, 'response2')
-
-	// 	} catch (error) {
-	// 		console.log(error);
-	// 	}
-
-	// }
+	}
 });
 
 
