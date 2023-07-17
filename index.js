@@ -75,7 +75,15 @@ app.post('/api/bid/', (req, res) => {
 });
 
 app.get('/callback/', async (req, res) => {
-	res.redirect(`https://jivimart.com/Confirm/${req.query}`)
+	let url_parts = url.parse(req.url, true),
+		responseData = url_parts.query;
+	// console.log('responseData callback', responseData)
+	const data = {
+		payment_status: responseData.payment_status,
+		payment_id: responseData.payment_id,
+		id: req.cookies.ordercookie
+	}
+	res.redirect(`https://jivimart.com/Confirm/${responseData}`)
 	console.log(req, 'ooo')
 	console.log(req, 'ooo2')
 	// console.log(res, 'ppp')
@@ -93,45 +101,37 @@ app.get('/callback/', async (req, res) => {
 	// let orderidcookie = (req.cookies.ordercookie)
 	// console.log("orderidcookie777", orderidcookie)
 	// console.log('newCookies2', tokenn)
-	// let url_parts = url.parse(req.url, true),
-	// 	responseData = url_parts.query;
-	// console.log('responseData callback', responseData)
-	// const data = {
-	// 	payment_status: responseData.payment_status,
-	// 	payment_id: responseData.payment_id,
-	// 	id: req.cookies.ordercookie
+	// console.log(data, 'datadatadata')
+	// console.log(responseData, 'poopop')
+
+
+
+	// if (data == null) {
+	// 	console.log("error")
 	// }
-	console.log(data, 'datadatadata')
-	console.log(responseData, 'poopop')
 
 
 
-	if (data == null) {
-		console.log("error")
-	}
+	// if (responseData.payment_id) {
+	// 	try {
+	// 		let orderdata = axios.defaults.headers.common['Authorization'] = `Bearer ${tokenn}`;
+	// 		console.log('llll', orderdata)
+	// 		const response = axios.post('https://jivimart.com/public/api/user/order/make/payment/id', data)
+	// 			.then(ress => {
+	// 				console.log("postdata", ress)
+	// 				let sendorderid = ress.data.data.order_uuid
+	// 				console.log('jjjjj', sendorderid)
+	// 				res.redirect(`https://jivimart.com/Confirm/${sendorderid}`)
 
+	// 			}
+	// 			)
+	// 		console.log(response, 'response2')
 
+	// 	} catch (error) {
+	// 		console.log(error);
+	// 	}
 
-	if (responseData.payment_id) {
-		try {
-			let orderdata = axios.defaults.headers.common['Authorization'] = `Bearer ${tokenn}`;
-			console.log('llll', orderdata)
-			const response = axios.post('https://jivimart.com/public/api/user/order/make/payment/id', data)
-				.then(ress => {
-					console.log("postdata", ress)
-					let sendorderid = ress.data.data.order_uuid
-					console.log('jjjjj', sendorderid)
-					res.redirect(`https://jivimart.com/Confirm/${sendorderid}`)
-
-				}
-				)
-			console.log(response, 'response2')
-
-		} catch (error) {
-			console.log(error);
-		}
-
-	}
+	// }
 });
 
 
