@@ -100,7 +100,7 @@ app.get('/callback/', async (req, res) => {
 		payment_id: responseData.payment_id,
 		id: req.cookies.ordercookie
 	}
-	window.location.href = `https://jivimart.com/Confirm/${data}`
+	res.redirect(`https://jivimart.com/Confirm/${data}`)
 	console.log(data, 'datadatadata')
 	console.log(responseData, 'poopop')
 
