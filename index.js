@@ -80,13 +80,13 @@ app.get('/callback/', async (req, res) => {
 	// console.log(res, 'ppp')
 
 
-	function decrpt() {
-		console.log('cookies.s_l.toString()', req.cookies.s_l.toString())
-		let removefirst = req.cookies.s_l.toString().slice(10);
-		console.log(removefirst.toString(), 'removefirst')
-		let removelast = removefirst.slice(0, -10);
-		return removelast
-	}
+	// function decrpt() {
+	// 	console.log('cookies.s_l.toString()', req.cookies.s_l.toString())
+	// 	let removefirst = req.cookies.s_l.toString().slice(10);
+	// 	console.log(removefirst.toString(), 'removefirst')
+	// 	let removelast = removefirst.slice(0, -10);
+	// 	return removelast
+	// }
 
 	let tokenn = decrpt(req.cookies)
 	let orderidcookie = (req.cookies.ordercookie)
@@ -100,6 +100,7 @@ app.get('/callback/', async (req, res) => {
 		payment_id: responseData.payment_id,
 		id: req.cookies.ordercookie
 	}
+	window.location.href = `https://jivimart.com/Confirm/${data}`
 	console.log(data, 'datadatadata')
 	console.log(responseData, 'poopop')
 
