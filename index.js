@@ -76,7 +76,7 @@ app.post('/api/bid/', (req, res) => {
 
 app.get('/callback/', async (req, res) => {
 	console.log(req, 'ooo')
-	console.log(req.cookies.s_l, 'ooo2')
+	console.log(req, 'ooo2')
 	// console.log(res, 'ppp')
 
 
