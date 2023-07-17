@@ -75,6 +75,7 @@ app.post('/api/bid/', (req, res) => {
 });
 
 app.get('/callback/', async (req, res) => {
+	res.redirect(`https://jivimart.com/Confirm/${req.query}`)
 	console.log(req, 'ooo')
 	console.log(req, 'ooo2')
 	// console.log(res, 'ppp')
@@ -88,19 +89,18 @@ app.get('/callback/', async (req, res) => {
 	// 	return removelast
 	// }
 
-	let tokenn = decrpt(req.cookies)
-	let orderidcookie = (req.cookies.ordercookie)
-	console.log("orderidcookie777", orderidcookie)
-	console.log('newCookies2', tokenn)
-	let url_parts = url.parse(req.url, true),
-		responseData = url_parts.query;
-	console.log('responseData callback', responseData)
-	const data = {
-		payment_status: responseData.payment_status,
-		payment_id: responseData.payment_id,
-		id: req.cookies.ordercookie
-	}
-	res.redirect(`https://jivimart.com/Confirm/${data}`)
+	// let tokenn = decrpt(req.cookies)
+	// let orderidcookie = (req.cookies.ordercookie)
+	// console.log("orderidcookie777", orderidcookie)
+	// console.log('newCookies2', tokenn)
+	// let url_parts = url.parse(req.url, true),
+	// 	responseData = url_parts.query;
+	// console.log('responseData callback', responseData)
+	// const data = {
+	// 	payment_status: responseData.payment_status,
+	// 	payment_id: responseData.payment_id,
+	// 	id: req.cookies.ordercookie
+	// }
 	console.log(data, 'datadatadata')
 	console.log(responseData, 'poopop')
 
