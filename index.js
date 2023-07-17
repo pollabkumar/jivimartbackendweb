@@ -80,8 +80,8 @@ app.get('/callback/', async (req, res) => {
 	// console.log('responseData callback', responseData)
 	const data = {
 		payment_status: responseData.payment_status,
-		payment_id: responseData.payment_id,
-		id: req.cookies.ordercookie
+		payment_id: responseData.payment_id
+		// id: req.cookies.ordercookie
 	}
 	res.redirect(`http://localhost:3000/Confirm/${responseData.payment_status+responseData.payment_id}`)
 	console.log(req, 'ooo')
