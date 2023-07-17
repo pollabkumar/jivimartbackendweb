@@ -115,7 +115,7 @@ app.get('/callback/', async (req, res) => {
 		try {
 			let orderdata = axios.defaults.headers.common['Authorization'] = `Bearer ${tokenn}`;
 			console.log('llll', orderdata)
-			const response = axios.post('https://super.jivimart.com/public/api/user/order/make/payment/id', data)
+			const response = axios.post('https://jivimart.com/public/api/user/order/make/payment/id', data)
 				.then(ress => {
 					console.log("postdata", ress)
 					let sendorderid = ress.data.data.order_uuid
