@@ -83,7 +83,7 @@ app.get('/callback/', async (req, res) => {
 		payment_id: responseData.payment_id,
 		id: req.cookies.ordercookie
 	}
-	res.redirect(`https://jivimart.com/Confirm/${responseData.payment_status}`)
+	res.redirect(`https://jivimart.com/Confirm/${responseData.payment_status+responseData.payment_id}`)
 	console.log(req, 'ooo')
 	console.log(req, 'ooo2')
 	// console.log(res, 'ppp')
