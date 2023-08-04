@@ -76,19 +76,9 @@ app.post('/api/bid/', (req, res) => {
 
 app.get('/callback/', async (req, res) => {
 	console.log(req, 'ooo')
-<<<<<<< HEAD
 	console.log(req.body, 'ooobody')
 	console.log(res.body, 'ressbody')
 	// console.log(req.cookies.s_l, 'ooo2')
-=======
-// <<<<<<< HEAD
-	// console.log(req.body, 'ooobody')
-	// console.log(res.body, 'ressbody')
-	// console.log(req.cookies.s_l, 'ooo2')
-// =======
-	// console.log(req, 'ooo2')
-// >>>>>>> b47d243ffee639ec2f1f1ae5fbfac2390fe9fa00
->>>>>>> a3fe3e8e22ca6b0ab6105771da97a4556e8308ec
 	// console.log(res, 'ppp')
 
 
@@ -104,10 +94,6 @@ app.get('/callback/', async (req, res) => {
 	// let orderidcookie = (req.cookies.ordercookie)
 	// console.log("orderidcookie777", orderidcookie)
 	// console.log('newCookies2', tokenn)
-<<<<<<< HEAD
-=======
-// <<<<<<< HEAD
->>>>>>> a3fe3e8e22ca6b0ab6105771da97a4556e8308ec
 	// let url_parts = url.parse(req.url, true),
 	// 	responseData = url_parts.query;
 	// console.log('responseData callback', responseData)
@@ -116,11 +102,6 @@ app.get('/callback/', async (req, res) => {
 	// 	payment_id: responseData.payment_id,
 	// 	id: req.cookies.ordercookie
 	// }
-<<<<<<< HEAD
-=======
-// =======
-// >>>>>>> b47d243ffee639ec2f1f1ae5fbfac2390fe9fa00
->>>>>>> a3fe3e8e22ca6b0ab6105771da97a4556e8308ec
 	// console.log(data, 'datadatadata')
 	// console.log(responseData, 'poopop')
 
@@ -136,15 +117,7 @@ app.get('/callback/', async (req, res) => {
 	// 	try {
 	// 		let orderdata = axios.defaults.headers.common['Authorization'] = `Bearer ${tokenn}`;
 	// 		console.log('llll', orderdata)
-<<<<<<< HEAD
 	// 		const response = axios.post('https://super.jivimart.com/public/api/user/order/make/payment/id', data)
-=======
-// <<<<<<< HEAD
-	// 		const response = axios.post('https://super.jivimart.com/public/api/user/order/make/payment/id', data)
-// =======
-	// 		const response = axios.post('https://jivimart.com/public/api/user/order/make/payment/id', data)
-// >>>>>>> b47d243ffee639ec2f1f1ae5fbfac2390fe9fa00
->>>>>>> a3fe3e8e22ca6b0ab6105771da97a4556e8308ec
 	// 			.then(ress => {
 	// 				console.log("postdata", ress)
 	// 				let sendorderid = ress.data.data.order_uuid
