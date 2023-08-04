@@ -43,8 +43,8 @@ app.use(cookieParser());
 
 
 app.post('/api/bid/', (req, res) => {
-	Insta.setKeys('test_d883b3a8d2bc1adc7a535506713', 'test_dc229039d2232a260a2df3f7502');
-	// Insta.setKeys('180c4491e7b7195c106a29e9b79fa14f', '30009eb95b26d7915d37386ca3060e28');
+	// Insta.setKeys('test_d883b3a8d2bc1adc7a535506713', 'test_dc229039d2232a260a2df3f7502');
+	Insta.setKeys('180c4491e7b7195c106a29e9b79fa14f', '30009eb95b26d7915d37386ca3060e28');
 
 	const data = new Insta.PaymentData();
 	Insta.isSandboxMode(true);
@@ -76,61 +76,63 @@ app.post('/api/bid/', (req, res) => {
 
 app.get('/callback/', async (req, res) => {
 	console.log(req, 'ooo')
-	console.log(req.cookies.s_l, 'ooo2')
+	console.log(req.body, 'ooobody')
+	console.log(res.body, 'ressbody')
+	// console.log(req.cookies.s_l, 'ooo2')
 	// console.log(res, 'ppp')
 
 
-	function decrpt() {
-		console.log('cookies.s_l.toString()', req.cookies.s_l.toString())
-		let removefirst = req.cookies.s_l.toString().slice(10);
-		console.log(removefirst.toString(), 'removefirst')
-		let removelast = removefirst.slice(0, -10);
-		return removelast
-	}
+	// function decrpt() {
+	// 	console.log('cookies.s_l.toString()', req.cookies.s_l.toString())
+	// 	let removefirst = req.cookies.s_l.toString().slice(10);
+	// 	console.log(removefirst.toString(), 'removefirst')
+	// 	let removelast = removefirst.slice(0, -10);
+	// 	return removelast
+	// }
 
-	let tokenn = decrpt(req.cookies)
-	let orderidcookie = (req.cookies.ordercookie)
-	console.log("orderidcookie777", orderidcookie)
-	console.log('newCookies2', tokenn)
-	let url_parts = url.parse(req.url, true),
-		responseData = url_parts.query;
-	console.log('responseData callback', responseData)
-	const data = {
-		payment_status: responseData.payment_status,
-		payment_id: responseData.payment_id,
-		id: req.cookies.ordercookie
-	}
-	console.log(data, 'datadatadata')
-	console.log(responseData, 'poopop')
-
-
-
-	if (data == null) {
-		console.log("error")
-	}
+	// let tokenn = decrpt(req.cookies)
+	// let orderidcookie = (req.cookies.ordercookie)
+	// console.log("orderidcookie777", orderidcookie)
+	// console.log('newCookies2', tokenn)
+	// let url_parts = url.parse(req.url, true),
+	// 	responseData = url_parts.query;
+	// console.log('responseData callback', responseData)
+	// const data = {
+	// 	payment_status: responseData.payment_status,
+	// 	payment_id: responseData.payment_id,
+	// 	id: req.cookies.ordercookie
+	// }
+	// console.log(data, 'datadatadata')
+	// console.log(responseData, 'poopop')
 
 
 
-	if (responseData.payment_id) {
-		try {
-			let orderdata = axios.defaults.headers.common['Authorization'] = `Bearer ${tokenn}`;
-			console.log('llll', orderdata)
-			const response = axios.post('https://super.jivimart.com/public/api/user/order/make/payment/id', data)
-				.then(ress => {
-					console.log("postdata", ress)
-					let sendorderid = ress.data.data.order_uuid
-					console.log('jjjjj', sendorderid)
-					res.redirect(`https://jivimart.com/Confirm/${sendorderid}`)
+	// if (data == null) {
+	// 	console.log("error")
+	// }
 
-				}
-				)
-			console.log(response, 'response2')
 
-		} catch (error) {
-			console.log(error);
-		}
 
-	}
+	// if (responseData.payment_id) {
+	// 	try {
+	// 		let orderdata = axios.defaults.headers.common['Authorization'] = `Bearer ${tokenn}`;
+	// 		console.log('llll', orderdata)
+	// 		const response = axios.post('https://super.jivimart.com/public/api/user/order/make/payment/id', data)
+	// 			.then(ress => {
+	// 				console.log("postdata", ress)
+	// 				let sendorderid = ress.data.data.order_uuid
+	// 				console.log('jjjjj', sendorderid)
+	// 				res.redirect(`https://jivimart.com/Confirm/${sendorderid}`)
+
+	// 			}
+	// 			)
+	// 		console.log(response, 'response2')
+
+	// 	} catch (error) {
+	// 		console.log(error);
+	// 	}
+
+	// }
 });
 
 
