@@ -47,7 +47,7 @@ app.post('/api/bid/', (req, res) => {
 	Insta.setKeys('180c4491e7b7195c106a29e9b79fa14f', '30009eb95b26d7915d37386ca3060e28');
 
 	const data = new Insta.PaymentData();
-	Insta.isSandboxMode(true);
+	Insta.isSandboxMode(false);
 
 	data.purpose = req.body.purpose;
 	data.amount = req.body.amount;
